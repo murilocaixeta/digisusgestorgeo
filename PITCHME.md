@@ -13,14 +13,18 @@
 - Mapas Incorporados em Painéis
 
 ---
+
+---
+
 ## Mapa da Saúde
 ![Mapa da Saúde](/assets/image/mapadasaude.png)
 
 
 ---
-### Incluir camadas
 
-```
+## Incluir camadas
+
+```php
 							layers : {
 								//array com a lista dos layers que serao adicionados e ligados (visiveis)
                                 add : ['mapadasaude_setores_censitarios','mapadasaude_municipios_2010','mapadasaude_nomes_municipios_2010','limites_regiao_saude','mapadasaude_cnes','cnes_ativo_inativo',
