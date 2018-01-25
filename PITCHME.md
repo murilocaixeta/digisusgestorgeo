@@ -12,11 +12,9 @@
 - Mapas Especiais
 - Mapas Incorporados em Painéis
 
----
+---?image=/assets/image/mapadasaude.png
 
 ## Mapa da Saúde
-
----?image=/assets/image/mapadasaude.png
 
 - Code Presenting |
 - Repo Source, Static Blocks, GIST |
