@@ -15,11 +15,17 @@
 ## Mapa da Saúde
 ![Mapa da Saúde](/assets/image/mapadasaude.png)
 ---
-## Incluir camadas
+### Incluir camadas
+
 ```php
 layers : {
 	//array com a lista dos layers que serao adicionados e ligados (visiveis)
-	add : ['mapadasaude_setores_censitarios','mapadasaude_municipios_2010','mapadasaude_nomes_municipios_2010','limites_regiao_saude','mapadasaude_cnes','cnes_ativo_inativo',
+	add : ['mapadasaude_setores_censitarios'
+			,'mapadasaude_municipios_2010'
+			,'mapadasaude_nomes_municipios_2010'
+			,'limites_regiao_saude'
+			,'mapadasaude_cnes'
+			,'cnes_ativo_inativo',
 			'cnes_qt_leitos',
 			'cnes_st_atend_ambulatorial',
 			'cnes_st_atend_hospitalar',
@@ -32,7 +38,10 @@ layers : {
 	//array com a lista dos layers que serao adicionados mas nao ligados
 	on : ['mapadasaude_municipios_2010'],
 	//array com os layers desligados
-	off : ['mapadasaude_setores_censitarios','mapadasaude_nomes_municipios_2010','limites_regiao_saude','mapadasaude_cnes','cnes_ativo_inativo',
+	off : ['mapadasaude_setores_censitarios','mapadasaude_nomes_municipios_2010'
+			,'limites_regiao_saude'
+			,'mapadasaude_cnes'
+			,'cnes_ativo_inativo',
 			'cnes_qt_leitos',
 			'cnes_st_atend_ambulatorial',
 			'cnes_st_atend_hospitalar',
@@ -106,6 +115,8 @@ filters : [ {
 restoreMapId : ""
 };
 ```
+@[1,3-17](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
+
 ---?code=src/go/server.go&lang=golang&title=Golang File
 
 @[1,3-6](Present code found within any repo source file.)
