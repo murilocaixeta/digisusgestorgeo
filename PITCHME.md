@@ -20,12 +20,12 @@
 ```php
 layers : {
 	//array com a lista dos layers que serao adicionados e ligados (visiveis)
-	add : ['mapadasaude_setores_censitarios'
-			,'mapadasaude_municipios_2010'
-			,'mapadasaude_nomes_municipios_2010'
-			,'limites_regiao_saude'
-			,'mapadasaude_cnes'
-			,'cnes_ativo_inativo',
+	add : ['mapadasaude_setores_censitarios',
+			'mapadasaude_municipios_2010',
+			'mapadasaude_nomes_municipios_2010',
+			'limites_regiao_saude',
+			'mapadasaude_cnes',
+			'cnes_ativo_inativo',
 			'cnes_qt_leitos',
 			'cnes_st_atend_ambulatorial',
 			'cnes_st_atend_hospitalar',
@@ -116,9 +116,9 @@ filters : [ {
 restoreMapId : ""
 };
 ```
-@[3-17](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
-@[20](Camadas que serão adicionadas mas não ligadas)
-@[23-34](Camadas desligadas)
+@[3-16](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
+@[18](Camadas que serão adicionadas mas não ligadas)
+@[20-32](Camadas desligadas)
 
 ---?code=src/go/server.go&lang=golang&title=Golang File
 
