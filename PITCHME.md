@@ -116,7 +116,8 @@ filters : [ {
 restoreMapId : ""
 };
 ```
-`esusgestorgeo/mapadasaude/configMapaSaude.php`
+
+```esusgestorgeo/mapadasaude/configMapaSaude.php```
 
 @[3-16](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
 @[19](Camadas que serão adicionadas mas não ligadas)
