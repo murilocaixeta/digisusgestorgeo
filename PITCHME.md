@@ -38,7 +38,8 @@ layers : {
 	//array com a lista dos layers que serao adicionados mas nao ligados
 	on : ['mapadasaude_municipios_2010'],
 	//array com os layers desligados
-	off : ['mapadasaude_setores_censitarios','mapadasaude_nomes_municipios_2010'
+	off : ['mapadasaude_setores_censitarios'
+			,'mapadasaude_nomes_municipios_2010'
 			,'limites_regiao_saude'
 			,'mapadasaude_cnes'
 			,'cnes_ativo_inativo',
@@ -115,7 +116,9 @@ filters : [ {
 restoreMapId : ""
 };
 ```
-@[1,3-17](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
+@[3-17](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
+@[20](Camadas que serão adicionadas mas não ligadas)
+@[23-34](Camadas desligadas)
 
 ---?code=src/go/server.go&lang=golang&title=Golang File
 
