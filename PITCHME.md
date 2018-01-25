@@ -16,6 +16,7 @@
 ![Mapa da Saúde](/assets/image/mapadasaude.png)
 ---
 ### Incluir camadas
+`esusgestorgeo/mapadasaude/configMapaSaude.php`
 
 ```php
 layers : {
@@ -118,7 +119,7 @@ restoreMapId : ""
 ```
 @[3-16](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
 @[19](Camadas que serão adicionadas mas não ligadas)
-@[21-32](Camadas desligadas)
+@[21-33](Camadas desligadas)
 
 ---?code=src/go/server.go&lang=golang&title=Golang File
 
