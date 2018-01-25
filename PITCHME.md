@@ -11,104 +11,100 @@
 - Mapa da Saúde
 - Mapas Especiais
 - Mapas Incorporados em Painéis
-
 ---
 ## Mapa da Saúde
 ![Mapa da Saúde](/assets/image/mapadasaude.png)
-
-
 ---
-### Incluir camadas
-
-```
-							layers : {
-								//array com a lista dos layers que serao adicionados e ligados (visiveis)
-                                add : ['mapadasaude_setores_censitarios','mapadasaude_municipios_2010','mapadasaude_nomes_municipios_2010','limites_regiao_saude','mapadasaude_cnes','cnes_ativo_inativo',
-                                        'cnes_qt_leitos',
-                                        'cnes_st_atend_ambulatorial',
-                                        'cnes_st_atend_hospitalar',
-                                        'cnes_st_centro_cirurgico',
-                                        'cnes_st_centro_neonatal',
-                                        'cnes_st_centro_obstetrico',
-                                        'cnes_st_servico_apoio',
-                                        'cnes_tp_gestao',
-                                    ],
-								//array com a lista dos layers que serao adicionados mas nao ligados
-								on : ['mapadasaude_municipios_2010'],
-								//array com os layers desligados
-                                off : ['mapadasaude_setores_censitarios','mapadasaude_nomes_municipios_2010','limites_regiao_saude','mapadasaude_cnes','cnes_ativo_inativo',
-                                        'cnes_qt_leitos',
-                                        'cnes_st_atend_ambulatorial',
-                                        'cnes_st_atend_hospitalar',
-                                        'cnes_st_centro_cirurgico',
-                                        'cnes_st_centro_neonatal',
-                                        'cnes_st_centro_obstetrico',
-                                        'cnes_st_servico_apoio',
-                                        'cnes_tp_gestao',]
-							},
-							//lista de coordenadas x e y que serao adicionadas como pontos no mapa
-							points : {
-								//array com a lista de coordenadas
-								coord : [],
-								//titulo da nova camada
-								title : ""
-							},
-							//lista de coordenadas x e y que serao adicionadas como linhas no mapa
-							lines : {
-								//array de arrays com a lista de coordenadas de cada linha
-								//exemplo [[-54,-12,-50,-12],[-50,-1,-50,-2,-50,-3]]
-								coord : [ [] ],
-								//titulo da nova camada
-								title : ""
-							},
-							//lista de coordenadas x e y que serao adicionadas como poligonos no mapa
-							polygons : {
-								//array de arrays com a lista de coordenadas de cada poligono. A primeira coordenada deve ser igual a ultima.
-								//exemplo [[-50,-1,-48,-2,-50,-3,-50,-1]]
-								coord : [ [] ],
-								//titulo da nova camada
-								title : ""
-							},
-							//insere elementos no mapa com coordenadas definidas em wkt
-							wkt : {
-								//string no formato wkt
-								coord : "",
-								//titulo da nova camada
-								title : ""
-							},
-							//simbolo que sera utilizado para desenhar os elementos inseridos
-							symbol : {
-								//codigo do simbolo conforme definido em i3geo/symbols
-								name : "",
-								//em rgb, exemplo "0 255 0"
-								color : "",
-								//em pixels
-								size : ""
-							},
-							//arquivo KML que sera incluido no mapa. Valido apenas na interface google maps
-							kml : {
-								url : ""
-							},
-							//endereco de um WMS (sera incluido como uma camada no mapa)
-							wms : {
-								url : "",
-								layer : "",
-								style : "",
-								title : "",
-								srs : "",
-								imagetype : "",
-								version : ""
-							},
-							//filtros que serao aplicados aos layers. Utilize a expressaso conforme definido na documentacao
-							//do mapserver, exemplo
-							//{layer: "_lbiomashp",expression: "(('[CD_LEGENDA]'='CAATINGA'))"} ou {layer: "_lbiomashp",expression: "cd_legenda='CAATINGA'"}
-							filters : [ {
-								layer : "",
-								expression : ""
-							} ],
-							//id de um mapa salvo e que sera recuperado
-							restoreMapId : ""
-						};
+## Incluir camadas
+```php
+layers : {
+	//array com a lista dos layers que serao adicionados e ligados (visiveis)
+	add : ['mapadasaude_setores_censitarios','mapadasaude_municipios_2010','mapadasaude_nomes_municipios_2010','limites_regiao_saude','mapadasaude_cnes','cnes_ativo_inativo',
+			'cnes_qt_leitos',
+			'cnes_st_atend_ambulatorial',
+			'cnes_st_atend_hospitalar',
+			'cnes_st_centro_cirurgico',
+			'cnes_st_centro_neonatal',
+			'cnes_st_centro_obstetrico',
+			'cnes_st_servico_apoio',
+			'cnes_tp_gestao',
+		],
+	//array com a lista dos layers que serao adicionados mas nao ligados
+	on : ['mapadasaude_municipios_2010'],
+	//array com os layers desligados
+	off : ['mapadasaude_setores_censitarios','mapadasaude_nomes_municipios_2010','limites_regiao_saude','mapadasaude_cnes','cnes_ativo_inativo',
+			'cnes_qt_leitos',
+			'cnes_st_atend_ambulatorial',
+			'cnes_st_atend_hospitalar',
+			'cnes_st_centro_cirurgico',
+			'cnes_st_centro_neonatal',
+			'cnes_st_centro_obstetrico',
+			'cnes_st_servico_apoio',
+			'cnes_tp_gestao',]
+},
+//lista de coordenadas x e y que serao adicionadas como pontos no mapa
+points : {
+	//array com a lista de coordenadas
+	coord : [],
+	//titulo da nova camada
+	title : ""
+},
+//lista de coordenadas x e y que serao adicionadas como linhas no mapa
+lines : {
+	//array de arrays com a lista de coordenadas de cada linha
+	//exemplo [[-54,-12,-50,-12],[-50,-1,-50,-2,-50,-3]]
+	coord : [ [] ],
+	//titulo da nova camada
+	title : ""
+},
+//lista de coordenadas x e y que serao adicionadas como poligonos no mapa
+polygons : {
+	//array de arrays com a lista de coordenadas de cada poligono. A primeira coordenada deve ser igual a ultima.
+	//exemplo [[-50,-1,-48,-2,-50,-3,-50,-1]]
+	coord : [ [] ],
+	//titulo da nova camada
+	title : ""
+},
+//insere elementos no mapa com coordenadas definidas em wkt
+wkt : {
+	//string no formato wkt
+	coord : "",
+	//titulo da nova camada
+	title : ""
+},
+//simbolo que sera utilizado para desenhar os elementos inseridos
+symbol : {
+	//codigo do simbolo conforme definido em i3geo/symbols
+	name : "",
+	//em rgb, exemplo "0 255 0"
+	color : "",
+	//em pixels
+	size : ""
+},
+//arquivo KML que sera incluido no mapa. Valido apenas na interface google maps
+kml : {
+	url : ""
+},
+//endereco de um WMS (sera incluido como uma camada no mapa)
+wms : {
+	url : "",
+	layer : "",
+	style : "",
+	title : "",
+	srs : "",
+	imagetype : "",
+	version : ""
+},
+//filtros que serao aplicados aos layers. Utilize a expressaso conforme definido na documentacao
+//do mapserver, exemplo
+//{layer: "_lbiomashp",expression: "(('[CD_LEGENDA]'='CAATINGA'))"} ou {layer: "_lbiomashp",expression: "cd_legenda='CAATINGA'"}
+filters : [ {
+	layer : "",
+	expression : ""
+} ],
+//id de um mapa salvo e que sera recuperado
+restoreMapId : ""
+};
 ```
 ---?code=src/go/server.go&lang=golang&title=Golang File
 
