@@ -52,72 +52,9 @@ layers : {
 			'cnes_st_servico_apoio',
 			'cnes_tp_gestao',]
 },
-//lista de coordenadas x e y que serao adicionadas como pontos no mapa
-points : {
-	//array com a lista de coordenadas
-	coord : [],
-	//titulo da nova camada
-	title : ""
-},
-//lista de coordenadas x e y que serao adicionadas como linhas no mapa
-lines : {
-	//array de arrays com a lista de coordenadas de cada linha
-	//exemplo [[-54,-12,-50,-12],[-50,-1,-50,-2,-50,-3]]
-	coord : [ [] ],
-	//titulo da nova camada
-	title : ""
-},
-//lista de coordenadas x e y que serao adicionadas como poligonos no mapa
-polygons : {
-	//array de arrays com a lista de coordenadas de cada poligono. A primeira coordenada deve ser igual a ultima.
-	//exemplo [[-50,-1,-48,-2,-50,-3,-50,-1]]
-	coord : [ [] ],
-	//titulo da nova camada
-	title : ""
-},
-//insere elementos no mapa com coordenadas definidas em wkt
-wkt : {
-	//string no formato wkt
-	coord : "",
-	//titulo da nova camada
-	title : ""
-},
-//simbolo que sera utilizado para desenhar os elementos inseridos
-symbol : {
-	//codigo do simbolo conforme definido em i3geo/symbols
-	name : "",
-	//em rgb, exemplo "0 255 0"
-	color : "",
-	//em pixels
-	size : ""
-},
-//arquivo KML que sera incluido no mapa. Valido apenas na interface google maps
-kml : {
-	url : ""
-},
-//endereco de um WMS (sera incluido como uma camada no mapa)
-wms : {
-	url : "",
-	layer : "",
-	style : "",
-	title : "",
-	srs : "",
-	imagetype : "",
-	version : ""
-},
-//filtros que serao aplicados aos layers. Utilize a expressaso conforme definido na documentacao
-//do mapserver, exemplo
-//{layer: "_lbiomashp",expression: "(('[CD_LEGENDA]'='CAATINGA'))"} ou {layer: "_lbiomashp",expression: "cd_legenda='CAATINGA'"}
-filters : [ {
-	layer : "",
-	expression : ""
-} ],
-//id de um mapa salvo e que sera recuperado
-restoreMapId : ""
-};
 ```
 
-```esusgestorgeo/mapadasaude/configMapaSaude.php```
+`esusgestorgeo/mapadasaude/configMapaSaude.php`
 
 @[3-16](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
 @[19](Camadas que serão adicionadas mas não ligadas)
