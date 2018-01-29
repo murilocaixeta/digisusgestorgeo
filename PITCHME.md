@@ -3,19 +3,206 @@
 ### Interfaces e construção de mapas
 
 ---
+## digiSUS Gestor Geo
+- Plataforma para o desenvolvimento de componentes de Geoprocessamento para o digiSUS Gestor.
+- O digiSUS Gestor Geo baseia-se nos softwares livres i3Geo, Mapserver, PHP-Mapscript, OpenLayers, PostGis, entre outros.
+- Repositório: https://bitbucket.org/manatus/esusgestorgeo
 
+---
+## Alterações no código original do i3Geo
+
+Para o digiSUS Gestor Geo foram feitas as seguintes alterações nos valores default do arquivo `ms_configura.php`:
+
++++
+## Alterações no código original do i3Geo
+
+* `$esquemaadmin = "dbesusgestorgeo";` nome do esquema do banco de dados onde ficam as tabelas do sistema de administração do i3Geo
+
+* `$base = $locaplic."/mapadasaude/base.map";` nome do arquivo mapfile utilizado na inicialização dos mapas
+
+
++++
+## Alterações no código original do i3Geo
+
+* `$ogcwsmap = $locaplic."/mapadasaude/ogcws.map";` nome do arquivo mapfile utilizado na geração dos serviços OGC
+
+* `$conexaoadmin = $locaplic."/conecta_admin.php";` arquivo com a rotina que estabelece a conexão com o banco de dados de administração
+
++++
+## Alterações no código original do i3Geo
+
+* `$postgis_mapa` incluída uma rotina que define o valor dessa variável em função das variáveis de ambiente do SO
+
+---
 ## Interfaces
-
 <br>
-
-- Mapa da Saúde
+- Novo Mapa da Saúde
 - Mapas Especiais
 - Mapas Incorporados em Painéis
+
 ---
-## Mapa da Saúde
-![Mapa da Saúde](/assets/image/mapadasaude.png)
+### Organização das pastas
+<br>
+#### `esusgestorgeo/mapadasaude`
+<br>
+Contém os arquivos específicos da aplicação Novo Mapa da Saúde e programas que são compartilhados pelos outros tipos de mapa (especiais e paineis).
+
++++
+#### Arquivos compartilhados
+<br>
+##### `base.map`
+<br>
+Mapfile de inicialização, é definido como variável de configuração em `ms_configura.php`.
+
++++
+#### Arquivos compartilhados
+<br>
+##### `configMapaSaude.php`
+<br>
+Código javascript que define as variáveis globais com lista de camadas de fundo, o tipo de interface e a localização da aplicação i3Geo.
+
++++
+###### Configurar opções de mapa base
+```php
+var eng = new ol.layer.Tile(
+		{
+			title : "ESRI National Geographic",
+			visible : false,
+			isBaseLayer : true,
+			name : "eng",
+			source : new ol.source.TileArcGISRest(
+					{
+						url : "http://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer",
+						attributions : [ new ol.Attribution(
+								{
+									html : 'Tiles &copy; <a  href="http://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer">ArcGIS</a>'
+								}) ]
+					})
+		});
+var oce = new ol.layer.Tile(
+		{
+			title : "ESRI Ocean Basemap",
+			visible : false,
+			isBaseLayer : true,
+			name : "oce",
+			source : new ol.source.TileArcGISRest(
+					{
+						url : "http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer",
+						attributions : [ new ol.Attribution(
+								{
+									html : 'Tiles &copy; <a  href="http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer">ArcGIS</a>'
+								}) ]
+					})
+		});
+var ims = new ol.layer.Tile(
+		{
+			title : "ESRI Imagery World 2D",
+			visible : false,
+			isBaseLayer : true,
+			name : "ims",
+			source : new ol.source.TileArcGISRest(
+					{
+						url : "http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_Imagery_World_2D/MapServer",
+						attributions : [ new ol.Attribution(
+								{
+									html : 'Tiles &copy; <a  href="http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_Imagery_World_2D/MapServer">ArcGIS</a>'
+								}) ]
+					})
+		});
+var wsm = new ol.layer.Tile(
+		{
+			title : "ESRI World Street Map",
+			visible : false,
+			isBaseLayer : true,
+			name : "wsm",
+			source : new ol.source.TileArcGISRest(
+					{
+						url : "http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer",
+						attributions : [ new ol.Attribution(
+								{
+									html : 'Tiles &copy; <a  href="http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer">ArcGIS</a>'
+								}) ]
+					})
+		});
+var bra = new ol.layer.Tile(
+		{
+			title : "Base carto MMA",
+			visible : false,
+			isBaseLayer : true,
+			name : "bra",
+			source : new ol.source.TileWMS(
+					{
+						url : "http://mapas.mma.gov.br/cgi-bin/mapserv?map=/opt/www/html/webservices/baseraster.map&",
+						params : {
+							'layers' : "baseraster",
+							'srs' : "EPSG:4326",
+							'format' : "image/png"
+						}
+					})
+		});
+var esus = new ol.layer.Tile(
+		{
+			title : "ESUS Gestor mapa base",
+			visible : true,
+			isBaseLayer : true,
+			name : "osm",
+			source : new ol.source.TileWMS(
+					{
+						url : "<?php echo $urlMapabase;?>/wms",
+						params : {
+							'layers' : "osm",
+							'srs' : "EPSG:4326",
+							'format' : "image/png"
+						},
+						attributions : [ new ol.Attribution(
+								{
+									html : '&copy; </a>'
+								}) ]
+					})
+		});
+```
+
+@[1-15](Configuração de uma opção de mapa base)
+@[3](Nome do mapa base para o usuário)
+@[4](Informa se é o mapa base visível)
+@[9](Endereço do serviço do mapa base)
+@[77-96](Configuração do mapa base do digiSUS Gestor Geo)
+
++++
+#### Arquivos compartilhados
+<br>
+##### `ogcws.map`
+<br>
+Mapfile base utilizado para construir os serviços OGC disponibilizados ao público em geral. Contém definições de autoria e contato com a fonte dos dados disponibilizados via requisição `getcapabilities`.
+
++++
+#### Arquivos compartilhados
+<br>
+##### `tutorial*.php`
+<br>
+O arquivo `tutorialMapaSaude.php` aborda as funcionalidades gerais dos mapas como ferramentas de navegação e as funcionalidades gerais de cada módulo. Já os arquivos `tutorialCamadas.php` e `tutorialRegiaoEstudo.php` abordam as funcionalidades específicas de cada módulo. 
+
 ---
-### Incluir camadas
+### Novo Mapa da Saúde
+
+![Mapa da Saúde](assets/image/mapadasaude.png)
+
++++
+
+### Novo Mapa da Saúde
+
+- Ferramenta de visualização de informações geográficas com foco em Saúde
+- Possui funcionalidades específicas que permitem ao usuário criar filtros por regiões geográficas, condições sociossanitárias e estabelecimentos de saúde, além de gerar relatórios e salvar suas opções.
+
++++
+
+#### `mapadasaude.php`
+
+Interface principal do mapa interativo. Contém os elementos HTML e o código Javascript necessários ao funcionamento do Novo Mapa da Saúde. Inclui ainda os parâmetros de configuração do i3Geo, destacando-se:
+
++++
+
+##### Incluir camadas
 
 ```php
 layers : {
@@ -53,60 +240,141 @@ layers : {
 			'cnes_tp_gestao',]
 },
 ```
-
-`esusgestorgeo/mapadasaude/configMapaSaude.php`
-
-@[3-16](Camadas da pasta temas que serão incluídas na lista de camadas do Mapa da Saúde)
+@[3-16](Camadas da pasta temas que serão incluídas na lista de camadas do Novo Mapa da Saúde)
 @[19](Camadas que serão adicionadas mas não ligadas)
 @[21-33](Camadas desligadas)
 
----?code=src/go/server.go&lang=golang&title=Golang File
++++
 
-@[1,3-6](Present code found within any repo source file.)
-@[8-18](Without ever leaving your slideshow.)
-@[19-28](Using GitPitch code-presenting with (optional) annotations.)
+#### Customização da interface
 
+```php
+window.i3GEO_UI.start({
+	barraOpen:true,
+	mostraLogomarca:true, //se aparece ou n?o a logomarca
+	secoes:{
+		idsus:{
+			exibir:false,
+			aberto:false,
+		},
+		regiaoestudo:{
+			  exibir:true,
+			  aberto:true,
+		},
+		mapabase:{
+			exibir:true,
+			aberto:true,
+		},
+	}
+});
+```
 ---
 
-@title[JavaScript Block]
+### Mapas Especiais
 
-<p><span class="slide-title">JavaScript Block</span></p>
+- Mapas Especiais abordam assuntos específicos e são abertos como páginas independentes do portal digiSUS. 
+- Cada mapa especial pode utilizar uma interface diferente, com funcionalidades específicas, mas existem configurações que são comuns a todos os mapas desse tipo.
 
-```javascript
-// Include http module.
-var http = require("http");
++++
 
-// Create the server. Function passed as parameter
-// is called on every request made.
-http.createServer(function (request, response) {
-  // Attach listener on end event.  This event is
-  // called when client sent, awaiting response.
-  request.on("end", function () {
-    // Write headers to the response.
-    // HTTP 200 status, Content-Type text/plain.
-    response.writeHead(200, {
-      'Content-Type': 'text/plain'
-    });
-    // Send data and end response.
-    response.end('Hello HTTP!');
-  });
+### Mapas Especiais
 
-// Listen on the 8080 port.
-}).listen(8080);
+- A criação de um mapa especial é padronizada, permitindo que os códigos sejam reaproveitados sempre que possível. 
+- As interfaces dos mapas baseiam-se em templates, o que permite que vários mapas utilizem a mesma interface e que cada template possa ter funcionalidades diferentes.
+- Os arquivos específicos para os mapas especiais ficam em `esusgestorgeo/mapasespeciais/`.
+
++++
+
+### Mapas Especiais
+<br>
+#### `config_mapasespeciais.php`
+<br>
+- Os mapas especiais são registrados manualmente em um arquivo de configuração localizado em `esusgestorgeo/rest/linkmapa/config_mapasespeciais.php`.
+
++++
+
+#### Configuração de uma mapa especial
+
+```php
+61 => array(
+	"titulo"=>"Nova conforma&ccedil;&atilde;o regional",
+	"idgrupo"=>1070,
+	"banner"=>'<span class="portal"><img src="imagens/portal_saude.png" width="96" height="27" /></span><br>',
+	"identifica"=>"relatorios/macrorregioes/relatorio1",
+	"configjs"=>"macrorregioes.js",
+	"template"=>"padrao1.php",
+	"perfil"=>"menugestor",
+	"catalogo"=>array(
+		"banner"=>"<font size='5' style='font-family: tahoma'></font>",
+		"interno"=>true,
+		"externo"=>true,
+		"publico"=>true,
+		"versao" => 7
+	)
+)
 ```
 
-@[1,2](You can present code inlined within your slide markdown too.)
-@[9-17](Displayed using code-syntax highlighting just like your IDE.)
-@[19-20](Again, all of this without ever leaving your slideshow.)
+@[1](Id único para cada mapa)
+@[2](Título do mapa)
+@[3](Id do grupo no sistema de administração do i3Geo. Caso as camadas do mapa estejam referenciadas no objeto `MAPASESPECIAIS.LISTADECAMADAS` do arquivo `.js` correspondente, essa informação é desconsiderada)
+@[6](Arquivo `.js` armazenado na pasta `esusgestorgeo/mapasespeciais/configjs` que será incluído no template. Esse arquivo controla os grupos e camadas que são incluídas no mapa)
+@[7](Arquivo que será utilizado como interface para o mapa interativo. Os templates ficam armazenados na pasta `esusgestorgeo/mapasespeciais/templates`)
 
----?gist=onetapbeyond/494e0fecaf0d6a2aa2acadfb8eb9d6e8&lang=scala&title=Scala GIST
++++
 
-@[23](You can even present code found within any GitHub GIST.)
-@[41-53](GIST source code is beautifully rendered on any slide.)
-@[57-62](And code-presenting works seamlessly for GIST too, both online and offline.)
+### Mapas Especiais
+<br>
+#### `esusgestorgeo/mapasespeciais/configjs/*.js`
+<br>
+- Arquivos de configuração do catálogo de camadas que compõem um mapa especial.
+- Os temas são armazenados dentro arrays formando subgrupos.
+
++++
+
+#### Configuração das camadas de um mapa especial
+
+```php
+MAPASESPECIAIS.LISTADECAMADAS = {
+		'data':{
+			'subgrupo': [{
+				'id_n2': 1190,
+				'nome': 'Coeficiente de Detec&ccedil;&atilde;o',
+				'temas': [{
+					'id_n3': 1568,
+					'nome_tema': 'Coeficiente de detec&ccedil;&atilde;o geral de hansen&iacute;ase na popula&ccedil;&atilde;o negra por 100.000 hab - 2010',
+					'codigo_tema': 'legado/hanseniase_novos_casos_2010'
+				}, {
+					'id_n3': 1569,
+					'nome_tema': 'Coeficiente de grau de incapacidade f&iacute;sica 2 de hansen&iacute;ase na popula&ccedil;&atilde;o negra por 100.000 hab - 2010',
+					'codigo_tema': 'legado/hanseniase_incap_grau_2_2010'
+				}]
+			}]
+		}
+};
+```	
+
+@[4](Id do subgrupo. Deve ser único no arquivo em questão)
+@[5](Nome do subgrupo)
+@[7](Id do tema. Deve ser único no arquivo em questão)
+@[8](Nome do tema)
+@[9](Nome do arquivo mapfile do tema tendo a pasta `esusgestorgeo/temas` como raiz)
+
++++
+
+### Mapas Especiais
+<br>
+#### `abremapa.php`
+<br>
+- Para abrir um mapa especial inclua o id como parâmetro para o programa `/esusgestorgeo/mapasespeciais/abremapa.php`. 
+- Clique [aqui](http://digisus-geo-homologacao.saude.gov.br/esusgestorgeo/mapasespeciais/abremapa.php?id=35) para ver um exemplo.
 
 ---
 
+### Mapas incorporados em paineis
+
+- Mapas 
+
+---
 ## Template Help
 
 - [Code Presenting](https://github.com/gitpitch/gitpitch/wiki/Code-Presenting)
