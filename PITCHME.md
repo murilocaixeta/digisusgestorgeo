@@ -374,41 +374,59 @@ MAPASESPECIAIS.LISTADECAMADAS = {
 
 - São mapas que acompanham um painel de informações de um indicador ou um conjunto de indicadores
 - Incluem camadas que dizem respeito aos indicadores representados no painel
+- Os arquivos específicos para os mapas incorporados em painéis ficam em `esusgestorgeo/mapaspaineis/`.
+
++++
+
+### Mapas incorporados em painéis
+<br>
+#### `mapa1.php`
+<br>
+- Programa que gera os mapas incorporados em paineis
+- Para criar um novo mapa deve-se incluir parâmetros pela url na inicializalção do programa
+
++++
+
+#### Parâmetros de mapas incorporados em painéis
+
+ - `metaestatids` - Lista com os códigos dos indicadores conforme consta no MGI (coluna `id_medida_variavel` da view `dbesusgestorgeo.i3geoestat_medida_variavel`
+ - `temas` - Lista dos mapfiles da pasta `esusgestorgeo/temas` contendo os temas que serão incluídos no mapa
+ - `visiveis` - Lista das camadas que abrem ligadas no mapa. As camadas sao definidas nos parâmetros `temas` e `metaestatids`
+
++++
+
+#### Parâmetros de mapas incorporados em painéis
+
+ - `itabela` - Nome de um arquivo php existente em `esusgestorgeo/mapaspaineis/relatorios` que será aberto na função de identificação. Não utilize a extensao `.php`
+ - `itabelaw` - Largura da janela `itabela`
+ - `itabelah` - Altura da janela `itabela`
+
++++
+
+#### Parâmetros de mapas incorporados em painéis
+
+ - `campo` - Nome da coluna da tabela utilizada para criar uma máscara sobre o mapa. É preenchido automaticamente pela aplicação
+ - `valor` - Valor a ser utilizado em conjunto com o parâmetro campo (utiliza-se o conector "diferente de" para compor a máscara)
 
 ---
-## Template Help
+## Links e suporte
 
-- [Code Presenting](https://github.com/gitpitch/gitpitch/wiki/Code-Presenting)
-  + [Repo Source](https://github.com/gitpitch/gitpitch/wiki/Code-Delimiter-Slides), [Static Blocks](https://github.com/gitpitch/gitpitch/wiki/Code-Slides), [GIST](https://github.com/gitpitch/gitpitch/wiki/GIST-Slides) 
-- [Custom CSS Styling](https://github.com/gitpitch/gitpitch/wiki/Slideshow-Custom-CSS)
-- [Slideshow Background Image](https://github.com/gitpitch/gitpitch/wiki/Background-Setting)
-- [Slide-specific Background Images](https://github.com/gitpitch/gitpitch/wiki/Image-Slides#background)
-- [Custom Logo](https://github.com/gitpitch/gitpitch/wiki/Logo-Setting) [TOC](https://github.com/gitpitch/gitpitch/wiki/Table-of-Contents) [Footnotes](https://github.com/gitpitch/gitpitch/wiki/Footnote-Setting)
-
----
-
-### Template Versions
-
-- #### [Base Template  @fa[external-link gp-download]](https://gitpitch.com/gitpitch/templates/black)
-- #### [Code Maximized @fa[external-link gp-download]](https://gitpitch.com/gitpitch/templates/black?p=codemax)
-- #### [Speaker Notes @fa[external-link gp-download]](https://gitpitch.com/gitpitch/templates/black?p=speaker)
+- @fa[bitbucket][ Repositório digiSUS Gestor Geo](https://bitbucket.org/manatus/esusgestorgeo)
+- @fa[gitlab][ Repositório i3Geo](https://softwarepublico.gov.br/gitlab/i3geo/i3geo)
+  + @fa[bug][ Bugs](https://softwarepublico.gov.br/gitlab/i3geo/i3geo/issues)	
+- @fa[wikipedia-w][ Wiki i3Geo](https://softwarepublico.gov.br/gitlab/i3geo/i3geo/wikis/home)
+  + @fa[wikipedia-w][ Para desenvolvedores](https://softwarepublico.gov.br/gitlab/i3geo/i3geo/wikis/para-desenvolvedores-indice)
+  + @fa[wikipedia-w][ Roteiro do Sistema de Administração](https://softwarepublico.gov.br/gitlab/i3geo/i3geo/wikis/roteiro-sistema-administracao) 
 
 ---
 
-### Questions?
+
+### Perguntas?
 
 <br>
 
-@fa[twitter gp-contact](@gitpitch)
-
-@fa[github gp-contact](gitpitch)
-
-@fa[medium gp-contact](@gitpitch)
-
----?image=assets/image/gitpitch-audience.jpg&opacity=100
-
-@title[Download this Template!]
-
-### Get your presentation started!
-### [Download this template @fa[external-link gp-download]](https://gitpitch.com/template/download/black)
-
+@fa[medium]( caixetaunb@gmail.com)
+<br>
+@fa[whatsapp]( 61 9677-5005)
+<br>
+@fa[mobile]( 61 99677-5005)
