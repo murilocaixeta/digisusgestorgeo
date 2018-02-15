@@ -272,6 +272,12 @@ window.i3GEO_UI.start({
 
 ### Mapas Especiais
 
+![Mapas Especiais](assets/image/mapasespeciais.png)
+
++++
+
+### Mapas Especiais
+
 - Mapas Especiais abordam assuntos específicos e são abertos como páginas independentes do portal digiSUS. 
 - Cada mapa especial pode utilizar uma interface diferente, com funcionalidades específicas, mas existem configurações que são comuns a todos os mapas desse tipo.
 
@@ -372,6 +378,18 @@ MAPASESPECIAIS.LISTADECAMADAS = {
 
 ### Mapas incorporados em painéis
 
+![Mapas Incorporados em Painéis](assets/image/mapapainel.png)
+
++++
+
+### Mapas incorporados em painéis
+
+![Mapas Incorporados em Painéis 2](assets/image/mapapainel2.png)
+
++++
+
+### Mapas incorporados em painéis
+
 - São mapas que acompanham um painel de informações de um indicador ou um conjunto de indicadores
 - Incluem camadas que dizem respeito aos indicadores representados no painel
 - Os arquivos específicos para os mapas incorporados em painéis ficam em `esusgestorgeo/mapaspaineis/`.
@@ -421,7 +439,7 @@ MAPASESPECIAIS.LISTADECAMADAS = {
 ---
 
 
-### Perguntas?
+## Perguntas?
 
 <br>
 
