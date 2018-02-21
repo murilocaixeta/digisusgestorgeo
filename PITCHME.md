@@ -183,7 +183,7 @@ Mapfile base utilizado para construir os serviços OGC disponibilizados ao públ
 O arquivo `tutorialMapaSaude.php` aborda as funcionalidades gerais dos mapas como ferramentas de navegação e as funcionalidades gerais de cada módulo. Já os arquivos `tutorialCamadas.php` e `tutorialRegiaoEstudo.php` abordam as funcionalidades específicas de cada módulo. 
 
 ---
-### Novo Mapa da Saúde
+### [Novo Mapa da Saúde](http://digisus.saude.gov.br/geo/mapadasaude/)
 
 ![Mapa da Saúde](assets/image/mapadasaude.png)
 
@@ -241,7 +241,7 @@ layers : {
 },
 ```
 @[3-16](Camadas da pasta temas que serão incluídas na lista de camadas do Novo Mapa da Saúde)
-@[19](Camadas que serão adicionadas mas não ligadas)
+@[19](Camadas que serão adicionadas ligadas)
 @[21-33](Camadas desligadas)
 
 +++
@@ -325,6 +325,9 @@ window.i3GEO_UI.start({
 @[3](Id do grupo no sistema de administração do i3Geo. Caso as camadas do mapa estejam referenciadas no objeto `MAPASESPECIAIS.LISTADECAMADAS` do arquivo `.js` correspondente, essa informação é desconsiderada)
 @[6](Arquivo `.js` armazenado na pasta `esusgestorgeo/mapasespeciais/configjs` que será incluído no template. Esse arquivo controla os grupos e camadas que são incluídas no mapa)
 @[7](Arquivo que será utilizado como interface para o mapa interativo. Os templates ficam armazenados na pasta `esusgestorgeo/mapasespeciais/templates`)
+@[11](Informa se o mapa é acessível na rede interna do MS)
+@[12](Informa se o mapa é acessível em redes externas ao MS)
+@[13](Informa se o mapa é público)
 
 +++
 
@@ -372,7 +375,7 @@ MAPASESPECIAIS.LISTADECAMADAS = {
 #### `abremapa.php`
 <br>
 - Para abrir um mapa especial inclua o id como parâmetro para o programa `/esusgestorgeo/mapasespeciais/abremapa.php`. 
-- Clique [aqui](http://digisus-geo-homologacao.saude.gov.br/esusgestorgeo/mapasespeciais/abremapa.php?id=35) para ver um exemplo.
+- Clique [aqui](http://digisus.saude.gov.br/geo/mapasespeciais/abremapa.php?id=61) para ver um exemplo.
 
 ---
 
@@ -407,7 +410,7 @@ MAPASESPECIAIS.LISTADECAMADAS = {
 
 #### Parâmetros de mapas incorporados em painéis
 
- - `metaestatids` - Lista com os códigos dos indicadores conforme consta no MGI (coluna `id_medida_variavel` da view `dbesusgestorgeo.i3geoestat_medida_variavel`
+ - `metaestatids` - Lista com os códigos dos indicadores conforme consta no MGDI (coluna `id_medida_variavel` da view `dbesusgestorgeo.i3geoestat_medida_variavel`
  - `temas` - Lista dos mapfiles da pasta `esusgestorgeo/temas` contendo os temas que serão incluídos no mapa
  - `visiveis` - Lista das camadas que abrem ligadas no mapa. As camadas sao definidas nos parâmetros `temas` e `metaestatids`
 
@@ -425,6 +428,34 @@ MAPASESPECIAIS.LISTADECAMADAS = {
 
  - `campo` - Nome da coluna da tabela utilizada para criar uma máscara sobre o mapa. É preenchido automaticamente pela aplicação
  - `valor` - Valor a ser utilizado em conjunto com o parâmetro campo (utiliza-se o conector "diferente de" para compor a máscara)
+
+---
+
+## [API REST](http://digisus.saude.gov.br/geo/rest/)
+
+- Concentra os serviços utilizados pelo framework digiSUS Gestor Geo
+- Utiliza o [Slim](https://www.slimframework.com/) para a criação da API e o [Swagger](https://swagger.io/) para documentação.
+- Os arquivos das APIs ficam armazenados em `esusgestorgeo/rest`
+- As  APIs são registradas em `esusgestorgeo/rest/swagger.json`
+
++++
+
+## [API REST](http://digisus.saude.gov.br/geo/rest/)
+
+- Os serviços podem ser reutilizados por outras aplicações
+- Exemplos de serviços cadastrados:
+  + `/regioes`: Busca regiões por nome, código ou geometria
+  + `/consultacensoporsc`: Lista setores censitários com base em critérios sociais e econômicos do Censo 2010
+  + `/consultacnes`: Pesquisa dados no cadastro CNES
+  
++++
+
+### Lista de mapas especiais
+
+- A lista de mapas especiais é registrada como uma API REST
+- A partir dela é possível identificar:
+  + [Todos os mapas especiais](http://digisus.saude.gov.br/geo/rest/linkmapa/especiais/lista/todos)
+  + [Todos os mapas especiais de uso público (usuários não logados)](http://digisus.saude.gov.br/geo/rest/linkmapa/especiais/lista/publicos)
 
 ---
 ## Links e suporte
